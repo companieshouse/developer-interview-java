@@ -1,0 +1,22 @@
+{
+    "name": "ch-interview-java",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "forwardPorts": [
+        "8080:8080"
+    ],
+    "mounts": [
+        "type=bind,source=${localEnv:HOME}/.m2,target=/root/.m2,consistency=cached"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vmware.vscode-boot-dev-pack",
+                "redhat.java",
+                "vmware.vscode-boot-dev-pack"
+            ]
+        }
+    }
+}
