@@ -13,9 +13,7 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "vmware.vscode-boot-dev-pack",
-                "redhat.java",
-                "vmware.vscode-boot-dev-pack"
+                "vscjava.vscode-java-pack"
             ]
         }
     }
