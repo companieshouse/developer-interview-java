@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+if ! command -v zip >/dev/null 2>&1; then
+  echo "Error: zip command not found. Please install zip to use this script." >&2
+  exit 1
+fi
+
+if ! command -v find >/dev/null 2>&1; then
+  echo "Error: find command not found. Please install find to use this script." >&2
+  exit 1
+fi
+
+while getopts 'Dh' flag; do
+  case "${flag}" in
+    D) PRESERVE_DIRECTORY=true ;;
+    h) echo "Usage: $0 [-D] [-h]"
+       echo "  -D  Preserve outdirectory"
+       echo "  -h  Show this help message"
+       exit 0 ;;
+    *) echo "Invalid option: -${OPTARG}" >&2
+       exit 1 ;;
+  esac
+done
+
+date_suffix=$(date +%s)
+directory="techtest-$date_suffix"
+
+mkdir "$directory"
+
+find . -type f \( -not -path './node_modules/*' -and -not -path './dist/*' -and -not -path './coverage/*' -and -not -path './.git/*' \) | while read file; do
+  echo "Copying $file to $directory/$file"
+  mkdir -p "$directory/$(dirname "$file")"
+  cp "$file" "$directory/$file"
+done
+
+zip -r "$directory.zip" "$directory"
+
+if [ -z "$PRESERVE_DIRECTORY" ]; then
+  rm -rf "$directory"
+fi
