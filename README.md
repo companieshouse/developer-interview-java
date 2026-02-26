@@ -4,10 +4,11 @@ This provides a simple Spring Boot application to be used as part of the intervi
 
 ## Pre-requisites
 
-* Java 21 if running locally
+* Java 21 (if running locally)
 * IDE of choice (e.g. IntelliJ, Eclipse, VS Code)
-* Maven (if not using the wrapper)
-* Docker (if running in a container)
+* Maven (optional, if not using the wrapper)
+* Docker (optional, if running in a container)
+* [sdkman](https://sdkman.io/) (optional)
 
 ## Running the application
 
